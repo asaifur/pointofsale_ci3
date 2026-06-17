@@ -1,0 +1,115 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Dt {
+
+    protected $ci;
+    protected $table;
+    protected $select = '*';
+    protected $joins = [];
+    protected $where = [];
+    protected $order = [];
+    protected $searchable = [];
+
+    public function __construct()
+    {
+        $this->ci =& get_instance();
+    }
+
+    public function table($table)
+    {
+        $this->table = $table;
+        return $this;
+    }
+
+    public function select($select)
+    {
+        $this->select = $select;
+        return $this;
+    }
+
+    public function join($table, $condition, $type = 'left')
+    {
+        $this->joins[] = [$table, $condition, $type];
+        return $this;
+    }
+
+    public function where($key, $value = NULL)
+    {
+        $this->where[] = [$key, $value];
+        return $this;
+    }
+
+    public function searchable($columns)
+    {
+        $this->searchable = $columns;
+        return $this;
+    }
+
+    public function order($column, $dir = 'desc')
+    {
+        $this->order = [$column, $dir];
+        return $this;
+    }
+
+    public function generate()
+    {
+        $request = $_POST;
+
+        $start  = isset($request['start']) ? intval($request['start']) : 0;
+        $length = isset($request['length']) ? intval($request['length']) : 10;
+        $search = isset($request['search']['value']) ? $request['search']['value'] : '';
+
+        $db = $this->ci->db;
+
+        // BASE QUERY
+        $db->select($this->select, FALSE);
+        $db->from($this->table);
+
+        foreach ($this->joins as $join) {
+            $db->join($join[0], $join[1], $join[2]);
+        }
+
+        foreach ($this->where as $w) {
+            $db->where($w[0], $w[1]);
+        }
+
+        // SEARCH
+        if (!empty($search) && !empty($this->searchable)) {
+            $db->group_start();
+            foreach ($this->searchable as $col) {
+                $db->or_like($col, $search);
+            }
+            $db->group_end();
+        }
+
+        // TOTAL FILTERED
+        $filtered_query = clone $db;
+        $recordsFiltered = $filtered_query->count_all_results('', FALSE);
+
+        // ORDER
+        if (isset($request['order'][0])) {
+            $columnIndex = $request['order'][0]['column'];
+            $dir         = $request['order'][0]['dir'];
+            $columnName  = $request['columns'][$columnIndex]['data'];
+
+            $db->order_by($columnName, $dir);
+        } else if (!empty($this->order)) {
+            $db->order_by($this->order[0], $this->order[1]);
+        }
+
+        // LIMIT
+        $db->limit($length, $start);
+
+        $data = $db->get()->result_array();
+
+        // TOTAL ALL
+        $total = $this->ci->db->count_all($this->table);
+
+        return json_encode([
+            "draw" => intval($request['draw']),
+            "recordsTotal" => $total,
+            "recordsFiltered" => $recordsFiltered,
+            "data" => $data
+        ]);
+    }
+}

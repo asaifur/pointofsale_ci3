@@ -1,0 +1,216 @@
+/* =====================================================
+   ADMINLTE CUSTOM THEME
+   PRIMARY COLOR : #8F0177
+   ===================================================== */
+
+
+/* ===============================
+   NAVBAR TOP
+================================ */
+.main-header.navbar{
+    background-color:#8F0177 !important;
+}
+
+.main-header .nav-link{
+    color:#ffffff !important;
+}
+
+.main-header .nav-link:hover{
+    color:#ffd6f5 !important;
+}
+
+
+/* ===============================
+   SIDEBAR
+================================ */
+.main-sidebar{
+    background-color:#8F0177 !important;
+}
+
+.brand-link{
+    background-color:#8F0177 !important;
+    color:#ffffff !important;
+    border-bottom:1px solid rgba(255,255,255,0.2);
+}
+
+.brand-link:hover{
+    color:#ffffff;
+}
+
+
+/* sidebar menu */
+.nav-sidebar .nav-link{
+    color:#ffffff !important;
+}
+
+/* hover */
+.nav-sidebar .nav-link:hover{
+    background-color:#a8008c !important;
+    color:#ffffff !important;
+}
+
+/* active */
+.nav-sidebar .nav-link.active{
+    background-color:#6d015c !important;
+    color:#ffffff !important;
+}
+
+/* icon */
+.nav-sidebar .nav-icon{
+    color:#ffffff !important;
+}
+
+/* header modul */
+.nav-header{
+    color:#ffd6f5 !important;
+    font-weight:bold;
+}
+
+
+/* ===============================
+   BUTTON
+================================ */
+
+.btn-primary{
+    background-color:#8F0177 !important;
+    border-color:#8F0177 !important;
+}
+
+.btn-primary:hover{
+    background-color:#a8008c !important;
+    border-color:#a8008c !important;
+}
+
+.btn-success{
+    background-color:#8F0177 !important;
+    border-color:#8F0177 !important;
+}
+
+.btn-success:hover{
+    background-color:#a8008c !important;
+    border-color:#a8008c !important;
+}
+
+
+/* ===============================
+   CARD
+================================ */
+
+.card-primary.card-outline{
+    border-top:3px solid #8F0177;
+}
+
+.card-header{
+    background:#ffffff;
+    border-bottom:1px solid #eee;
+}
+
+
+/* ===============================
+   LINK
+================================ */
+
+a{
+    color:#8F0177;
+}
+
+a:hover{
+    color:#a8008c;
+}
+
+
+/* ===============================
+   FORM INPUT
+================================ */
+
+.form-control:focus{
+    border-color:#8F0177;
+    box-shadow:0 0 0 0.2rem rgba(143,1,119,0.25);
+}
+
+
+/* ===============================
+   CHECKBOX CUSTOM
+================================ */
+
+.custom-control-input:checked ~ .custom-control-label::before{
+    background-color:#8F0177 !important;
+    border-color:#8F0177 !important;
+}
+
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before{
+    background-color:#8F0177 !important;
+}
+
+
+/* ===============================
+   TABLE
+================================ */
+
+.table thead th{
+    background:#fafafa;
+    border-bottom:2px solid #8F0177;
+}
+
+
+/* ===============================
+   PAGINATION
+================================ */
+
+.page-item.active .page-link{
+    background-color:#8F0177;
+    border-color:#8F0177;
+}
+
+.page-link{
+    color:#8F0177;
+}
+
+.page-link:hover{
+    color:#a8008c;
+}
+
+
+/* ===============================
+   BADGE
+================================ */
+
+.badge-primary{
+    background:#8F0177;
+}
+
+
+/* ===============================
+   MODAL HEADER
+================================ */
+
+.modal-header.bg-primary{
+    background:#8F0177 !important;
+}
+
+
+/* ===============================
+   SWEETALERT BUTTON
+================================ */
+
+.swal2-confirm{
+    background-color:#8F0177 !important;
+}
+
+
+/* ===============================
+   SCROLLBAR
+================================ */
+
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#8F0177;
+    border-radius:10px;
+}
+
+::-webkit-scrollbar-track{
+    background:#f1f1f1;
+}
